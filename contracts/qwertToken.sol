@@ -90,7 +90,7 @@ pragma solidity ^0.8.0;
 contract QwertyToken {
     uint public balance;
 
-    // Initialize global variables
+
     constructor() public
     {
         balance = 0;
