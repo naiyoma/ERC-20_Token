@@ -96,7 +96,7 @@ contract QwertyToken {
         balance = 0;
     }
 
-    // The payable keyword allows this function to accept Ether
+    // The payable keyword allows this function to accept Eth.
     function contribute() public payable
     {
         // msg.value is the value of Ether sent in a transaction
