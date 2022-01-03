@@ -89,10 +89,12 @@ pragma solidity ^0.8.0;
 
 contract QwertyToken {
     uint public balance;
+    uint256 totalSupply_;
 
 
-    constructor() public
+    constructor(uint256 total) public
     {
+        totalSupply_ = total;
         balance = 0;
     }
 
