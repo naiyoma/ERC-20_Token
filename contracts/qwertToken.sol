@@ -85,12 +85,12 @@ pragma solidity ^0.8.0;
 //       return c;
 //     }
 // }
-
+mapping (address => uint256) balances;
+mapping (address => mapping (address => uint256)) allowed;
 
 contract QwertyToken {
     uint public balance;
     uint256 totalSupply_;
-
 
     constructor(uint256 total) public
     {
