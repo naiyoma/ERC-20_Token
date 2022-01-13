@@ -37,8 +37,20 @@ contract QwertyToken{
     }
     function approve(address _spender, uint256 _value) public returns (bool success){
         // approve the spender to spend funds from your account
+        //allowance
+        allowance[msg.sender][_spender] = _value;
         // allow and approve
         emit Approval(msg.sender, _spender, _value);
+        return true;
+    }
+
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool success){
+        //check that the _from  address has enough tokens
+        require(_value <= balance[_from]);
+        //check that the allowance is enough
+        require (_value <= allowance[_from][msg.sender]);
+        //deduct transfered tokens from the balance
+        balance[_from] = balance[_from] - _value;
         return true;
     }
 
