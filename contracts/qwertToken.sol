@@ -55,8 +55,12 @@ contract QwertyToken{
         allowance[_from][msg.sender] = allowance[_from][msg.sender] - _value;
         //update _to account balace
         balance[_to] = balance[_to] + _value;
+
         emit Transfer(_from, _to, _value);
         return true;
     }
 
+    function balanceOf(address _owner) public view returns (uint){
+        return balance[_owner];
+    }
 }
