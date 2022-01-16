@@ -17,7 +17,12 @@ contract QwertTokenSale {
     }
 
     function buyTokens(uint256 _numberOfTokens) public payable{
-        
+        //Inorder to sell the tokens
+            //1.Triger the sell event
+            //2.check the value of existing tokens
+            //3.keep track of sold tokens
+            //4.check for a sucessful transfer
+            
     }
 
     
