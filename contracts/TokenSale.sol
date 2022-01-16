@@ -8,8 +8,12 @@ contract QwertTokenSale {
     address admin;
     QwertyToken public tokenContract;
     uint256 public tokenPrice;
+    uint256 public tokenSold;
 
-    function tokenSale(QwertyToken _tokenContract, uint256 _tokenPrice) public {
+    event sell(
+        address _buyer,
+        uint256 _amount);
+    function tokenSale(QwertyToken _tokenContract, uint256 _tokenPrice) public{
         admin = msg.sender;
         tokenContract = _tokenContract;
         tokenPrice = _tokenPrice;
@@ -22,7 +26,9 @@ contract QwertTokenSale {
             //2.check the value of existing tokens
             //3.keep track of sold tokens
             //4.check for a sucessful transfer
-            
+
+        tokenSold += _numberOfTokens;
+        emit sell(msg.sender, _numberOfTokens);
     }
 
     
