@@ -16,5 +16,9 @@ contract QwertTokenSale {
 
     }
 
+    function buyTokens(uint256 _numberOfTokens) public payable{
+        
+    }
+
     
 }
