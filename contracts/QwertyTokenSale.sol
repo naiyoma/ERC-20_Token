@@ -40,7 +40,7 @@ contract QwertTokenSale {
     // end the tken sal
     function endSale() public {
         require(msg.sender == admin);
-        require(tokenContract.transfer(admin, _tokenContract.balanceOf(this)));
+        require(tokenContract.transfer(admin, tokenContract.balanceOf(address(this))));
     }
 
     
