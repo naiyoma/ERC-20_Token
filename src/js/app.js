@@ -1,8 +1,8 @@
 const { default: Web3 } = require("web3");
 
-console.log("qwerty")
 
 App = {
+    web3Provider: null,
     init: function() {
         console.log("hey")
     },
