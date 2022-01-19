@@ -13,6 +13,7 @@ App = {
             App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
             web3 = new Web3(App.web3Provider);
         }
+        return App.initContracts();
     },
 
     initContracts: function() {
@@ -20,7 +21,7 @@ App = {
             App.contracts.QwertyTokenSale = TruffleContract(qwertyTokenSale);
             App.contracts.QwertyTokenSale.setProvider(App.web3Provider);
             App.contracts.QwertyTokenSale.deployed().then(function(qwertyTokenSale){
-                console.log("initialize a cntract")
+                console.log("initialize a cntract", qwertyTokenSale.address);
             })
     })
 }
