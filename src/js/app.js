@@ -31,16 +31,26 @@ App = {
                     App.contracts.QwertyTokenSale.deployed().then(function(qwertyToken){
                         console.log("Dapp Token Address:", qwertyToken.address);
             });
+            return App.render();
         });    
     })
 },
     render: function() {
-        web3.eth.getCoinbase(function(err, account){
-            if(err === null) {
-                App.account = account;
-                $('#accountAddress').html("Your account:" + account);
-            }
-        })
+        // web3.eth.getCoinbase(function(err, account){
+        //     console.log(web3.eth.getCoinbase(function(err, account)));
+        //     if(err === err) {
+        //         console.log("account", err);
+        //         App.account = account;
+        //         $('#accountAddress').html("Your account:" + err);
+        //     }
+        // })
+        if(window.ethereum){
+            ethereum.enable().then(function(acc){
+                App.account = acc[0];
+                $("#accountAddress").html("Your Account: " + App.account);
+                console.log(acc);
+            });
+        }
     }
 }
 
