@@ -4,7 +4,7 @@ pragma solidity >=0.4.22 <0.9.0;
 
 import "./QwertyToken.sol";
 
-contract QwertTokenSale {
+contract QwertyTokenSale {
     address admin;
     QwertyToken public tokenContract;
     uint256 public tokenPrice;
