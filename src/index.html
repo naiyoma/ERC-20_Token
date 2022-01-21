@@ -24,10 +24,10 @@
                 <p>Token Price is <span class="token-price"></span> Ether. YOu currently have
                     <span class="qwerty-balance">Qwerty</span>
                 </p>
-                <form class="row g-3">
+                <form onSubmit="App.buyTokens()"; return false; role="form" class="row g-3">
                     <div class="col-auto">
                       <label for="tokens" class="visually-hidden">Password</label>
-                      <input type="number" class="form-control" id="inputPassword2" placeholder="Tokens">
+                      <input type="number" class="form-control" id="numberOfTokens" placeholder="Tokens">
                     </div>
                     <div class="col-auto">
                       <button type="submit" class="btn btn-primary mb-3">Buy</button>

@@ -10,7 +10,7 @@ contract QwertyTokenSale {
     uint256 public tokenPrice;
     uint256 public tokenSold;
 
-    event sell(
+    event Sell(
         address _buyer,
         uint256 _amount);
 
@@ -35,7 +35,7 @@ contract QwertyTokenSale {
         require(amountTobuy <= contractBalance, "The reserve does not have enough tokens");
         require(tokenContract.transfer(msg.sender, _numberOfTokens));
         tokenSold += _numberOfTokens;
-        emit sell(msg.sender, _numberOfTokens);
+        emit Sell(msg.sender, _numberOfTokens);
     }
     // end the tken sal
     function endSale() public {
