@@ -40,6 +40,19 @@ App = {
         });    
     })
 },
+    listenForEvents: function() {
+        App.contracts.QwertyTokenSale.deployed().then(function(instance) {
+            instance.Sell({}, {
+                fromBlock: 0,
+                toBlock: 'latest'
+            }).watch(function(error, event){
+                console.log("event triggered", event);
+                App.render();
+            })
+        })
+
+    },
+
     render: function() {
         if(window.ethereum){
             ethereum.enable().then(function(acc){
@@ -92,11 +105,8 @@ App = {
                 gas: 500000
             });
         }).then(function(result) {
-            // console.log("token bought")
-            // $('form').trigger('reset')
-            // $('#loader').hide();
-            // $('#content').show();
-
+            console.log("tokens bought.....")
+            $('form').trigger('reset')
         });
     }
 }
