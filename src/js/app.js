@@ -69,6 +69,13 @@ App = {
             
             var progressPercent = (App.tokenSold / App.tokensAvailable)*100;
             $('#progress').css('width', progressPercent + '%');
+
+            App.contracts.QwertyToken.deployed().then(function(instance) {
+                qwertyTokenInstance = instance;
+                return qwertyTokenInstance.balanceOf(App.account);
+            }).then(function(balance) {
+                $('.qwerty-balance').html(balance.toNumber());
+            })
         });
     }
 }
