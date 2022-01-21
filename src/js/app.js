@@ -60,11 +60,15 @@ App = {
                 )
                 
                 );
-                return qwertyTokenSaleInstance.tokenSold();
+                // return qwertyTokenSaleInstance.tokenSold();
         }).then(function(tokenSold){
-            App.tokenSold = tokenSold.toNumber();
-            $('.token-sold').html(App.tokenSold);
+            // App.tokenSold = tokenSold.toNumber();
+            App.tokenSold = 600;
+            $('.tokens-sold').html(App.tokenSold);
             $('.tokens-available').html(App.tokensAvailable);
+            
+            var progressPercent = (App.tokenSold / App.tokensAvailable)*100;
+            $('#progress').css('width', progressPercent + '%');
         });
     }
 }
