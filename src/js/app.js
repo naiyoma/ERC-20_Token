@@ -4,6 +4,8 @@ App = {
     account: '0x0',
     loading: false,
     tokenPrice: 10000000000000,
+    tokenSold: 0,
+    tokensAvailable: 77000,
     init: function() {
         console.log("hey")
         console.log(App.tokenPrice)
@@ -39,25 +41,6 @@ App = {
     })
 },
     render: function() {
-        if(App.loading){
-            return;
-        }
-        App.loading = true;
-
-        var loader = $('#loader');
-        var content = $('#content');
-
-        loader.show();
-        // content.hide();
-
-        // web3.eth.getCoinbase(function(err, account){
-        //     console.log(web3.eth.getCoinbase(function(err, account)));
-        //     if(err === err) {
-        //         console.log("account", err);
-        //         App.account = account;
-        //         $('#accountAddress').html("Your account:" + err);
-        //     }
-        // })
         if(window.ethereum){
             ethereum.enable().then(function(acc){
                 App.account = acc[0];
@@ -70,19 +53,18 @@ App = {
             qwertyTokenSaleInstance = instance;
             return qwertyTokenSaleInstance.tokenPrice();
         }).then(function(tokenPrice){
-            // App.tokenPrice = tokenPrice;
-            console.log(
-                web3.utils.fromWei(web3.utils.toBN(App.tokenPrice))
-            );
             $('.token-price').html(
-                // web3.utils.fromWei(App.tokenPrice, "ether").toNumber()
                 web3.utils.fromWei(
                     web3.utils.toBN(App.tokenPrice), // converts Number to BN, which is accepted by `toWei()`
                     'ether'
-            
                 )
                 
                 );
+                return qwertyTokenSaleInstance.tokenSold();
+        }).then(function(tokenSold){
+            App.tokenSold = tokenSold.toNumber();
+            $('.token-sold').html(App.tokenSold);
+            $('.tokens-available').html(App.tokensAvailable);
         });
     }
 }
