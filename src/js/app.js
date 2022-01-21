@@ -2,6 +2,9 @@ App = {
     web3Provider: null,
     contracts: {},
     account: '0x0',
+    loading: false,
+    tokenPrice: 10000000000000,
+
     init: function() {
         console.log("hey")
         return App.initWeb3();
@@ -36,6 +39,17 @@ App = {
     })
 },
     render: function() {
+        if(App.loading){
+            return;
+        }
+        App.loading = true;
+
+        var loader = $('#loader');
+        var content = $('#content');
+
+        loader.show();
+        // content.hide();
+
         // web3.eth.getCoinbase(function(err, account){
         //     console.log(web3.eth.getCoinbase(function(err, account)));
         //     if(err === err) {
@@ -51,6 +65,13 @@ App = {
                 console.log(acc);
             });
         }
+        App.contracts.QwertyTokenSale.deployed().then(function(instance){
+            qwertyTokenSaleInstance = instance;
+            return qwertyTokenSaleInstance.tokenPrice();
+        }).then(function(tokenPrice){
+            App.tokenPrice = tokenPrice;
+            $('.token-price').html(App.tokenPrice)
+        });
     }
 }
 
