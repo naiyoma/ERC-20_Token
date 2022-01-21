@@ -4,9 +4,9 @@ App = {
     account: '0x0',
     loading: false,
     tokenPrice: 10000000000000,
-
     init: function() {
         console.log("hey")
+        console.log(App.tokenPrice)
         return App.initWeb3();
     },
     initWeb3: function() {
@@ -65,12 +65,24 @@ App = {
                 console.log(acc);
             });
         }
-        App.contracts.QwertyTokenSale.deployed().then(function(instance){
+        
+        App.contracts.QwertyTokenSale.deployed().then(function(instance) {
             qwertyTokenSaleInstance = instance;
             return qwertyTokenSaleInstance.tokenPrice();
         }).then(function(tokenPrice){
-            App.tokenPrice = tokenPrice;
-            $('.token-price').html(App.tokenPrice)
+            // App.tokenPrice = tokenPrice;
+            console.log(
+                web3.utils.fromWei(web3.utils.toBN(App.tokenPrice))
+            );
+            $('.token-price').html(
+                // web3.utils.fromWei(App.tokenPrice, "ether").toNumber()
+                web3.utils.fromWei(
+                    web3.utils.toBN(App.tokenPrice), // converts Number to BN, which is accepted by `toWei()`
+                    'ether'
+            
+                )
+                
+                );
         });
     }
 }
