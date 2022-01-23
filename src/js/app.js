@@ -7,7 +7,7 @@ App = {
     tokenSold: 0,
     tokensAvailable: 77000,
     init: function() {
-        console.log("hey")
+        console.log("start initialize")
         console.log(App.tokenPrice)
         return App.initWeb3();
     },
@@ -27,7 +27,7 @@ App = {
             App.contracts.QwertyTokenSale = TruffleContract(qwertyTokenSale);
             App.contracts.QwertyTokenSale.setProvider(App.web3Provider);
             App.contracts.QwertyTokenSale.deployed().then(function(qwertyTokenSale){
-                console.log("initialize a cntract", qwertyTokenSale.address);
+                console.log("initialize a contract", qwertyTokenSale.address);
             });
         }).done(function(){
                 $.getJSON("QwertyToken.json", function(qwertyToken) {
@@ -36,6 +36,7 @@ App = {
                     App.contracts.QwertyTokenSale.deployed().then(function(qwertyToken){
                         console.log("Dapp Token Address:", qwertyToken.address);
             });
+            App.listenForEvents();
             return App.render();
         });    
     })
