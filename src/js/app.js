@@ -36,23 +36,23 @@ App = {
                     App.contracts.QwertyTokenSale.deployed().then(function(qwertyToken){
                         console.log("Dapp Token Address:", qwertyToken.address);
             });
-            App.listenForEvents();
+            // App.listenForEvents();
             return App.render();
         });    
     })
 },
-    listenForEvents: function() {
-        App.contracts.QwertyTokenSale.deployed().then(function(instance) {
-            instance.Sell({}, {
-                fromBlock: 0,
-                toBlock: 'latest'
-            }).watch(function(error, event){
-                console.log("event triggered", event);
-                App.render();
-            })
-        })
+    // listenForEvents: function() {
+    //     App.contracts.QwertyTokenSale.deployed().then(function(instance) {
+    //         instance.Sell({}, {
+    //             fromBlock: 0,
+    //             toBlock: 'latest'
+    //         }).watch(function(error, event){
+    //             console.log("event triggered", event);
+    //             App.render();
+    //         })
+    //     })
 
-    },
+    // },
 
     render: function() {
         if(window.ethereum){
