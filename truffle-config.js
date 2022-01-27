@@ -3,13 +3,16 @@ const HDWalletProvider = require("truffle-hdwallet-provider");
 
 module.exports = {
   networks: {
-    ropsten: {
+    rinkeby: {
       provider: () => new HDWalletProvider(
         process.env.MNEMONIC,
-        `https://ropsten.infura.io/v3/${process.env.INFURA_API_KEY}` 
+        `https://rinkeby.infura.io/v3/${process.env.INFURA_API_KEY}`,
+        0,
+        5 
       ),
-      gasPrice: 2500000000000,
-      network_id: 3
+      gas: 1000000,
+      gasPrice: 9000000000,
+      network_id: 4
 
     },
   },
